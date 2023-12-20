@@ -1,0 +1,58 @@
+-- command used to transfer files from local machine to master node
+gcloud compute scp user_profile_data.json aspiringde2306@hadoop-cluster-m:/home/aspiringde2306
+
+-- copying data from master node to HDFS 
+hdfs dfs -put store_data.json /input_data
+hdfs dfs -put ad_campaigns_data.json /input_data
+hdfs dfs -put user_profile_data.json /input_data
+
+-- command to create database in hive
+CREATE DATABASE spark_tables;
+
+-- command to use database in hive
+USE spark_tables;
+
+-- table ads_external
+CREATE EXTERNAL TABLE ads_external (
+  campaign_id STRING,
+  `date` DATE,
+  hour INT,
+  type STRING,
+  value STRING,
+  event MAP<STRING, INT>
+)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+STORED AS TEXTFILE
+LOCATION '/output_data/ad/';
+
+-- store_campaigns_external
+CREATE EXTERNAL TABLE store_campaigns_external (
+  campaign_id STRING,
+  `date` DATE,
+  hour INT,
+  type STRING,
+  value STRING,
+  event MAP<STRING, INT>
+)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+STORED AS TEXTFILE
+LOCATION '/output_data/store_campaigns/';
+
+-- user_campaigns_external
+CREATE EXTERNAL TABLE user_campaigns_external (
+  campaign_id STRING,
+  `date` DATE,
+  hour INT,
+  type STRING,
+  value STRING,
+  event MAP<STRING, INT>
+)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+STORED AS TEXTFILE
+LOCATION '/output_data/user_campaigns/';
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+[
+    {
+        "store_name": "McDonald",
+        "place_ids": ["CASSBB-11", "CADGBD-13", "FDBEGD-14"]
+    },
+
+    {
+        "store_name": "BurgerKing",
+        "place_ids": ["CASSBB-11"]
+    },
+
+    {
+        "store_name": "Macys",
+        "place_ids": ["BADGBA-13", "CASSBB-15", "FDBEGD-15"]
+    },
+
+    {
+        "store_name": "shoppers stop",
+        "place_ids": ["BADGBA-12"]
+    }
+]
+    
