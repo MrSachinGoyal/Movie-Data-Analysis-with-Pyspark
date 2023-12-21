@@ -1,0 +1,5 @@
+-- command to transfer files from local machine to GCP Dataproc VM (master node)
+gcloud compute scp movies.csv ratings.csv tags.csv aspiringde2306@hadoop-cluster-m:/home/aspiringde2306
+
+-- copying data from master node local file system to hdfs
+hdfs dfs -put movies.csv ratings.csv tags.csv /tmp/input_data
